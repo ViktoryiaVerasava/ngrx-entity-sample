@@ -1,0 +1,46 @@
+<div class="user-list">
+  <mat-card class="metrics">
+    <div>Selected User Id:</div>
+    <div>{{ currentUserId$ | async }}</div>
+  </mat-card>
+  <mat-card class="metrics">
+    <div>Total:</div>
+    <div>{{ total$ | async }}</div>
+  </mat-card>
+  <mat-card class="metrics">
+    <button mat-button (click)="sortUsers('ASC', 'id')" color="warn">
+      Sort By Id Asc
+    </button>
+    <button mat-button (click)="sortUsers('DESC', 'id')" color="warn">
+      Sort By Id Desc
+    </button>
+    <button mat-button (click)="sortUsers('ASC', 'name')" color="warn">
+      Sort By Name Asc
+    </button>
+    <button mat-button (click)="sortUsers('DESC', 'name')" color="warn">
+      Sort By Name Desc
+    </button>
+  </mat-card>
+  <mat-card>
+    <mat-list role="list" class="records">
+      <mat-list-item role="listitem" class="record">
+        <div class="record__item">ID</div>
+        <div class="record__item">Name</div>
+
+        <mat-divider></mat-divider>
+      </mat-list-item>
+      <mat-list-item
+        *ngFor="let user of users$ | async"
+        role="listitem"
+        class="record"
+      >
+        <div class="record__item">{{ user.id }}</div>
+        <div class="record__item">{{ user.name }}</div>
+        <button mat-button (click)="selectUser(user.id)" color="primary">
+          Select
+        </button>
+        <mat-divider></mat-divider>
+      </mat-list-item>
+    </mat-list>
+  </mat-card>
+</div>
